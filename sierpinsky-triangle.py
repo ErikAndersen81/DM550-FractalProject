@@ -36,6 +36,9 @@ turtle.tracer(1)
 t.hideturtle()
 sierpinsky_triangle(t, (0,0),300, True, 2)
 
+
+
+# Some comment
 def screendump(t):
     img=t.getscreen()
     img.getcanvas().postscript(file="duck.eps")
