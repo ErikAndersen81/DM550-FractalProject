@@ -8,10 +8,11 @@ def screendump(t):
     img=t.getscreen()
     img.getcanvas().postscript(file="duck.eps")
 
-def triangle(my_turtle, center, size, points_up):
+def triangle(my_turtle, center, side_len, height, points_up=False):
+    """ Draws a triangle that points either up or down and has a given side length and center.  
+    """
     my_turtle.up()
     x=center[0]
-    height=sqrt(size**2-(0.5*size)**2)
     if points_up:
         y=center[1]+(2/3)*height
         my_turtle.rt(60)
@@ -21,53 +22,31 @@ def triangle(my_turtle, center, size, points_up):
     my_turtle.goto(x,y)
     my_turtle.down()
     for i in range(3):
-        my_turtle.fd(size)
+        my_turtle.fd(side_len)
         my_turtle.rt(120)
     t.setheading(0)
 
-def sierpinsky_triangle(my_turtle, center, size, points_up, step):
-    """ An unsuccesful attempt at a more efficient sierpinsky triangle algorithm.
+def init_sierpinsky_triangle(my_turtle, center, side_len, steps):
+    """ This function is called only once, and basically just draws a triangle pointing up
+    and afterwards calls sierpinsky_triangle() which then calls itself recursively
     """
-    triangle(my_turtle, center, size, points_up)
-    if step == 0:
-        return
-    points_up = not points_up
-    height=sqrt(size**2-(0.5*size)**2)
-    x=center[0];y=center[1]
-    if points_up:
-        list_of_triangle_centers = [(x+size*0.25,y+height*(1/6)),(x-size*0.25,y+height*(1/6)),(x,y-height*(1/3))]
-    else:
-        list_of_triangle_centers = [(x+size*0.25,y-height*(1/6)),(x-size*0.25,y-height*(1/6)),(x,y+height*(1/3))]
-    triangle(my_turtle, center, size*0.5, points_up)
-    for tri in list_of_triangle_centers:
-        sierpinsky_triangle(my_turtle, tri, size*0.25, points_up,step-1)
-
-def sierpinsky_triangle2(t,size,step):
-    """ Draws Sierpinsky's triangle with a given size and number of steps.
-    """
-    if step == 0:
-        return
-    for i in range(3):
-        draw_triangle(t,size)
-        t.fd(size*2)
-        t.rt(120)
-        sierpinsky_triangle2(t, size/2, step-1)
+    height=sqrt(side_len**2-(side_len/2)**2)
+    triangle(my_turtle, center, side_len, height, True)
+    sierpinsky_triangle(my_turtle, center, side_len, height, steps-1)
     
-
-def draw_triangle(t, size):
-    """Draw a triangle of specified size. 
+def sierpinsky_triangle(my_turtle, center, side_len, height, step):
+    """ Draws a triangle pointing down and calls itself three times if step is gt 0.
     """
-    for i in range(3):
-        t.fd(size)
-        t.rt(120)
+    triangle(my_turtle, center, side_len/2, height/2)
+    if step >0:
+        x=center[0];y=center[1]
+        triangle_centers = [(x+side_len/4,y-height/6),(x-side_len/4,y-height/6),(x,y+height/3)]
+        for c in triangle_centers:
+            sierpinsky_triangle(my_turtle, c, side_len/2, height/2, step-1)
 
-if __name__="__main__":
+if __name__=="__main__":
     t=turtle.Turtle()
     turtle.tracer(1)
     t.hideturtle()
     t.speed(0)
-    sierpinsky_triangle2(t,100,5)
-    """
-    sierpinsky_triangle(t, (0,0),300, True, 2)
-    screendump(t)
-    """
+    init_sierpinsky_triangle(t,(0,0),400,6)
