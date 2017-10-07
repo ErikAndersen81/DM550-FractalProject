@@ -1,11 +1,7 @@
 import turtle
 
 def lazy_stem(t, length, width, segments, curve, steps):
-    if length < 0.1:
-        del t
-        return
     if steps == 0:
-        del t
         return
     for i in range(segments):
         t.pensize(width)
@@ -19,7 +15,6 @@ def lazy_stem(t, length, width, segments, curve, steps):
         lazy_stem(b, length*0.3, width*0.3, segments, curve, steps-1)
         width *= 0.87
         length *= 0.87
-    del t
         
 
 def main():
