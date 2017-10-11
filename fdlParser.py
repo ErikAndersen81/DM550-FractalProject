@@ -6,14 +6,22 @@ class SmartTurtle(turtle.Turtle):
     t.draw()
     """
     def __init__(self, **kwargs):
-        """ ### TASK 12 ###
-        Loads fdl file and reads its elements into appropriate data structures
-        """
-        filename=kwargs.pop('fdl')
-        f=open(filename,'r')
         self.rule={}
         self.cmd={}
         self.unfolded=''
+        try:
+            filename=kwargs.pop('fdl')
+            self.load(filename)
+        except:
+            print("Please load a fdl file, using instance method load()\n eg.:\n s=SmartTurtle()\ns.load(fdl) ")
+        super().__init__(**kwargs)
+        self.ht()
+
+    def load(self, filename):
+        """ ### TASK 12 ###
+        Loads fdl file and reads its elements into appropriate data structures.
+        """
+        f=open(filename,'r')
         for i in f.readlines():
             i=i.strip()
             i=i.split()
@@ -29,8 +37,7 @@ class SmartTurtle(turtle.Turtle):
                 self.depth=int(i[1])
             if i[0]=='cmd':
                 self.cmd[i[1]]=i[2:]
-            super().__init__(**kwargs)
-            self.ht()
+            
             
     def step(self):
         """ ### TASK 8 ### 
@@ -79,6 +86,7 @@ TODO:
             cmd(arg)
     def scale(self,val):
         self.length *= val
+
 
 if __name__=="__main__":
     fdl_file=input("Enter fdl file:")
