@@ -1,0 +1,10 @@
+start F X
+rule X -> X R Y F
+rule Y -> F X L Y
+length 3
+depth 13
+cmd F fd
+cmd X nop
+cmd Y nop
+cmd L lt 90
+cmd R rt 90

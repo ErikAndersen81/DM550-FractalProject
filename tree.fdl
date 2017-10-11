@@ -1,0 +1,11 @@
+start X
+rule X -> F L D X R X U L B
+length 100
+depth 10
+cmd X nop
+cmd F fd
+cmd B bk
+cmd R rt 70
+cmd L lt 35
+cmd D scale 0.7
+cmd U scale 1.4285714285714286

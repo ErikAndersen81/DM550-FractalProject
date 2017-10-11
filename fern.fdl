@@ -1,0 +1,15 @@
+start X
+rule X -> F L D X R X U L T E X V S B
+length 100
+depth 12
+cmd X nop
+cmd F fd
+cmd B bk
+cmd R rt 180
+cmd L lt 90
+cmd S rt 4
+cmd T lt 4
+cmd D scale 0.3
+cmd U scale 3.3333333333333335
+cmd E scale 0.87
+cmd V scale 1.1494252873563218
