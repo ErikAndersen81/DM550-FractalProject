@@ -1,6 +1,7 @@
 \documentclass[titlepage]{article}
 \usepackage[utf8]{inputenc}
 \usepackage{hyperref}
+\usepackage{color}
 \usepackage{float}
 \restylefloat{figure}
 \usepackage{subcaption}
@@ -44,6 +45,5 @@ section{Binary three}
 \subsection{Specification and design}
 We began by trying to define a function with two parameters (size, step)
 \section{FDL-Parser}
-Since the fdl-file is to be read by an instance of the turtle module's Turtle class, it was decided to make a subclass of it called SmartTurtle. This class should be able to read a fdl-file, and execute he commands, giving a reasonable result. 
-Since the instructions in the fdl file is supposed to be executed, Python's dictionary was deemed to be an appropriate data structure. The parser basically just reads through each line of the file, recognizing keywords, like \textit{start}, \textit{rule} and the like. The keywords are then used as lookups in the dictionary yielding a string containing arguments, list of rules, or a float or int, depending on the type of keyword.  \par
+Since the fdl-file is to be read by an instance of the turtle module's Turtle class, it was decided to make a subclass of it called SmartTurtle. This class should be able to read a fdl-file, and execute he commands, giving a reasonable result. Through analyzis of several fdl-files, a decision as to which attributes the SmartTurtle class should implement could be made. Thus, an instance of the SmartTurtle should have a start command, a length, a depth, a dictionary of rules, and one of commands which could be called with appropriate arguments. The rules should be unfolded according to the depth of the smartturtle, so a unfolded attribute would be convenient. This attribute would initially be an empty string, but when the user of the SmartTurtle class would want to execute the commands in the fdl-file loaded, a function to unfold the rules list is required.  
 \end{document}
