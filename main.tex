@@ -16,27 +16,25 @@
 \title{Fractals and the Beauty of Nature \\ DM550 - Fall Project 2017}
 \begin{document}
 \maketitle
-\section{Sierpinsky Triangle}
-\subsection{Specification and design}
-We began by trying to implement an algorith for the Sierpinsky triangle which was build upon the idea of placing inverted triangles inside other triangles. It turned out to be overly complicated, but it yielded som rather interesting results, which can be seen here:
+\section{Sierpinski Triangle}
+Initially, implementation of the Sierpinski triangle was build upon the idea of placing inverted triangles inside other triangles. It turned out to be a tad complicated, but it yielded some rather interesting results, which can be seen here:
 \begin{figure}[H]
   \centering
   \begin{subfigure}[b]{0.4\textwidth}
     \includegraphics[width=\textwidth]{wrongtriangle}
-    \caption{An unsuccesful attempt}
+    \caption{An unsuccessful attempt}
   \end{subfigure}
   \begin{subfigure}[b]{0.5\textwidth}
     \includegraphics[width=\textwidth]{wrongtriangle2}
-    \caption{Another unsuccesful attempt}
+    \caption{Another unsuccessful attempt}
   \end{subfigure}
 \end{figure}
-After meddling around for some time, we decided to go with a more convenient approach, and quickly came up with a succesful algorithm, that gave the expected result.
+After meddling around for some time, a decision was made to try the approach suggested in the project description. A successful algorithm that gave the expected result was then rapidly developed.
 \begin{figure}[H]
   \includegraphics[width=0.6\textwidth]{triangle}
-  \caption{Sierpinsky triangle with 5 subdivisions.}
+  \caption{Sierpinski triangle with 5 subdivisions.}
 \end{figure}
-\subsection{Implementation and testing}
-We used an iterative development process, meaning we started out by making a small piece of the code work in one iteration. Through testing, trial and error the goal of the iterative step was reached and we then carried on with the next step, where more code was implemented and tested. After several steps, we realized that our approach was overly complicated, so we started again from scratch. This time we did not care for optimization of the algorithm, and we solely focused on correctness.\footnote{The source code for this part of the porject can be found in the file \href{https://github.com/ErikAndersen81/DM550-FractalProject/blob/master/sierpinsky-triangle.py}{sierpinsky-triangle.py}}
+Revisiting the initial code, the faultiness of its algorithm became apparent and hence could be corrected. The effectiveness of this new code compared to the approach recommended in the project description is due to the lack of redundant drawing. \par We used an iterative development process, meaning we started out by making a small piece of the code work in one iteration. Through testing, trial and error the goal of the iterative step was reached and we then carried on with the next step, where more code was implemented and tested. After several steps, we realized that our approach was overly complicated, so we started again from scratch. This time we did not care for optimization of the algorithm, and we solely focused on correctness.\footnote{The source code for this part of the project can be found in the file \href{https://github.com/ErikAndersen81/DM550-FractalProject/blob/master/sierpinsky-triangle.py}{sierpinsky-triangle.py}}
 \begin{figure}[H]
   \centering
   \includegraphics{bintree}
