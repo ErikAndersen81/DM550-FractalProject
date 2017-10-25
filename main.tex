@@ -70,15 +70,14 @@ The first attempt took depth as an value that was transmuted in to a length that
 While this in theory would work, the math needed to ensure that the scaling would result in a tree with the correct length (len) at any given depth (x) were not found. (See figure XX  for an impression of one of the failed implementations.) The main problem were a continues mismatch between requested depth and the printed depth of the binary-tree. \par
 The problem were overcome by adding depth as the secondary imput factor in the definition of the object tree. (See figure XX)  Length were calculated based on the request in the assignment that a tree of the depth 10 should have the length 100. The depth value x now functioned as the iteration counter while length were scaled accordingly to the branch.\par  
 An initial ferne cloning-experiment, while yeilding a functional ferne FDL script, suffered from prolonged rendering time due to hardware limitations. The main problem arouse when due to ERIK SKRIV FORKLARING HER.
-\section{Sierpinski Triangle}
-Initially, implementation of the Sierpinski triangle was build upon the idea of placing inverted triangles inside other triangles. It turned out to be a tad complicated, but it yielded some rather interesting results, which can be seen here:
 \section{Binary-Tree}
-A simple binary-tree algorithm were written (INSERT NAME OF PY FILE ) which were developed to have an option to select depth. Each time a value was calculated print statements were added for that value to ensure that troubleshooting were more easily done.  A safeguard were added to the input value x to ensure that depth would be an integer, which then would be passed down through the code. The safeguard checked for strings, and force exits if one is found. Subsequently, it rounds floats and converts them to integers. (See figure XX )
+A simple binary-tree algorithm were written\footnote{The source code for this part of the project can be found in the file \href{https://github.com/ErikAndersen81/DM550-FractalProject/blob/master/Working_binary_tree.py}{binary-tree.py}}, which were developed to have an option to select depth. Each time a value was calculated print statements were added for that value to ensure that troubleshooting were more easily done.  A safeguard were added to the input value x to ensure that depth would be an integer, which then would be passed down through the code. The safeguard checked for strings, and force exits if one is found. Subsequently, it rounds floats and converts them to integers. (See figure XX )
 
 Following Turtle is imported and a few definitions of Turtle functions are written. 
 
 Minor print statements and some modifications form the Turtle package were added for aesthetics reasons and to ensure a proper user experience.  Finally the scaffolding was removed. 
-
+\section{Sierpinski Triangle}
+Initially, implementation of the Sierpinski triangle was build upon the idea of placing inverted triangles inside other triangles. It turned out to be a tad complicated, but it yielded some rather interesting results, which can be seen here:
 \begin{figure}[H]
   \centering
   \begin{subfigure}[b]{0.4\textwidth}
