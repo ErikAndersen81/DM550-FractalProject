@@ -3,6 +3,24 @@
 \usepackage{hyperref}
 \usepackage{float}
 \restylefloat{figure}
+\usepackage{color}
+\definecolor{pink}{RGB}{255,102,204}
+\definecolor{red}{RGB}{ 255, 51, 0}
+\definecolor{orange}{RGB}{ 255, 192,0}
+\definecolor{yellow}{RGB}{ 255, 255, 0}
+\definecolor{green}{RGB}{ 0,176,80}
+\definecolor{lgreen}{RGB}{ 146,208,80}
+\definecolor{dblue}{RGB}{ 0,32,96}
+\definecolor{lblue}{RGB}{ 79,129,189}
+
+\newcommand{\pink}{\textcolor{pink}}
+\newcommand{\red}{\textcolor{red}}
+\newcommand{\orange}{\textcolor{orange}}
+\newcommand{\yellow}{\textcolor{yellow}}
+\newcommand{\green}{\textcolor{green}}
+\newcommand{\lgreen}{\textcolor{lgreen}}
+\newcommand{\dblue}{\textcolor{dblue}}
+\newcommand{\lblue}{\textcolor{lblue}}
 \usepackage{subcaption}
 \usepackage{amsmath}
 \usepackage{amssymb}
@@ -21,17 +39,23 @@ While the description of a tree, triangle or a leaf is easily communicated betwe
 
 \section{Understanding recursion}
 As an illustrative explanation of recursions, a binary-tree of a depth of four, as seen in figure XX . The rule for the binary-tree is written as FLXRXLB, with F indicating a forward movement, B for a backward movement, and R and L as a right or left turn respectively. Each X indicates where each iteration (i.e. depth) would insert the rule. Table XX  shows the four iterations from depth one to Four. 
-\begin{table}[]
+\begin{table}[H]
 \centering
 \caption{My caption}
 \label{my-label}
 \begin{tabular}{lllll}
-Depth & Rule                                                                                                                                                                                                   &  &  &  \\
-One   & F L R L B                                                                                                                                                                                              &  &  &  \\
-Two   & F L F L R L B R F L R L BL B                                                                                                                                                                           &  &  &  \\
-Three & \begin{tabular}[c]{@{}l@{}}F L F L F L R L B R F L R L B L R F\\ B L F L R L B R F L R L B L B L B\end{tabular}                                                                                        &  &  &  \\
-Four  & \begin{tabular}[c]{@{}l@{}}F L F L F L F L R L B R F L R\\ L B L B,R F L F L R L B R F L\\ R L B L B L B R F L F L F L R\\ L B R F L R L B L B R F L F L\\  R L B R F L R L B L B L B L B\end{tabular} &  &  & 
-\end{tabular}
+  Depth & Rule\\
+  One   & F L R L B \\
+  Two   & F L F L R L B R F L R L B L B\\
+  Three &F L F L F L R L B R F L R L B \\
+        & L R F B L F L R L B R F L R L  \\
+  &B L B L B\\
+  Four  & F L F L F L F L R L B R F L R\\
+   & L B L B,R F L F L R L B R F L\\
+   & R L B L B L B R F L F L F L R\\
+   & L B R F L R L B L B R F L F L\\
+   & R L B R F L R L B L B L B L B\\
+  \end{tabular}
 \end{table}
 It should be noted that in the assignment, specifications for scaling of the length are included, but they have been removed from this example for a simple and smooth explanation. The colours in figure XX indicate the succession of when a line is drawn. It must be stressed that the colours do not show iterations, but first pass line in the given direction, so if two or more iteration results in a line being drawn twice, only first pass line is drawn in the figure. 
 The colour coded FDL for a binary-thee of depth 4 is:
@@ -83,10 +107,7 @@ Revisiting the initial code, the faultiness of its algorithm became apparent and
 \subsection{Specification and design}
 We began by trying to define a function with two parameters (size, step)
 \section{FDL-Parser}
-<<<<<<< HEAD
-Since the fdl-file is to be read by an instance of the turtle module's Turtle class, it was decided to make a subclass of it called SmartTurtle. This class should be able to read a fdl-file, and execute he commands, giving a reasonable result. Through analyzis of several fdl-files, a decision as to which attributes the SmartTurtle class should implement could be made. Thus, an instance of the SmartTurtle should have a start attribute containg a command, a length, a depth, a dictionary of rules, and one of commands which could be called with appropriate arguments. The rules should be unfolded according to the depth of the smartturtle, so a unfolded attribute would be convenient. This attribute would initially be an empty string, but when the user of the SmartTurtle class would want to execute the commands in the fdl-file loaded, a function to unfold the rules list and store them as a string in the unfolded attribute, will be required. This functionality is implemented in SmartTurtle's \dblue{step} function.
-=======
+Since the fdl-file is to be read by an instance of the turtle module's Turtle class, it was decided to make a subclass of it called SmartTurtle. This class should be able to read a fdl-file, and execute he commands, giving a reasonable result. Through analyzis of several fdl-files, a decision as to which attributes the SmartTurtle class should implement could be made. Thus, an instance of the SmartTurtle should have a start attribute containg a command, a length, a depth, a dictionary of rules, and one of commands which could be called with appropriate arguments. The rules should be unfolded according to the depth of the smartturtle, so a unfolded attribute would be convenient. This attribute would initially be an empty string, but when the user of the SmartTurtle class would want to execute the commands in the fdl-file loaded, a function to unfold the rules list and store them as a string in the unfolded attribute, will be required. This functionality is implemented in SmartTurtle's step function.
 Since the fdl-file is to be read by an instance of the turtle module's Turtle class, it was decided to make a subclass of it called SmartTurtle. This class should be able to read a fdl-file, and execute he commands, giving a reasonable result. 
-Since the instructions in the fdl file is supposed to be executed, Python's dictionary was deemed to be an appropriate data structure. The parser basically just reads through each line of the file, recognizing keywords, like \textit{start}, \textit{rule} and the like. The keywords are then used as lookups in the dictionary yielding a string containing arguments, list of rules, or a float or int, depending on the type of keyword.  \par
->>>>>>> d61039422aa1892e6d1207a2286c510f62fde8cc
+Since the instructions in the fdl file is supposed to be executed, Python's dictionary was deemed to be an appropriate data structure. The parser basically just reads through each line of the file, recognizing keywords, like \textit{start}, \textit{rule} and the like. The keywords are then used as lookups in the dictionary yielding a string containing arguments, list of rules, or a float or int, depending on the type of keyword. 
 \end{document}
