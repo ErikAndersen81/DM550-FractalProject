@@ -43,4 +43,7 @@ Revisiting the initial code, the faultiness of its algorithm became apparent and
 section{Binary three}
 \subsection{Specification and design}
 We began by trying to define a function with two parameters (size, step)
+\section{FDL-Parser}
+Since the fdl-file is to be read by an instance of the turtle module's Turtle class, it was decided to make a subclass of it called SmartTurtle. This class should be able to read a fdl-file, and execute he commands, giving a reasonable result. 
+Since the instructions in the fdl file is supposed to be executed, Python's dictionary was deemed to be an appropriate data structure. The parser basically just reads through each line of the file, recognizing keywords, like \textit{start}, \textit{rule} and the like. The keywords are then used as lookups in the dictionary yielding a string containing arguments, list of rules, or a float or int, depending on the type of keyword.  \par
 \end{document}
