@@ -1,9 +1,16 @@
+""" When this module is loaded as main, it will prompt the user for a fdl-file (Fractal Descriptive Language). The file must be present in the current working directory, and the full filename must be specified.
+"""
+
 import turtle
+import sys
 
 class SmartTurtle(turtle.Turtle):
     """ This smart turtle can be instantiated with a fdl file, which can be interpreted with SmartTurtle's draw method eg.:
+    
     t=SmartTurtle(fdl='my.fdl')
     t.draw()
+    
+    
     """
     def __init__(self, **kwargs):
         self.rule={}
@@ -12,8 +19,10 @@ class SmartTurtle(turtle.Turtle):
         try:
             filename=kwargs.pop('fdl')
             self.load(filename)
-        except:
-            print("Please load a fdl file, using instance method load()\n eg.:\n s=SmartTurtle()\ns.load(fdl) ")
+        except FileNotFoundError:
+            raise FileNotFoundError("Please instantiate SmartTurtle with a valid filename.")
+        except KeyError:
+            print("Please load an fdl-file using load() method in order to use SmartTurlte's draw method")
         super().__init__(**kwargs)
         self.ht()
 
@@ -42,9 +51,6 @@ class SmartTurtle(turtle.Turtle):
     def step(self):
         """ ### TASK 8 ### 
         Step computes the list of commands to be executed according to the depth given by the fdl. To save memory the list is saved as a string, where each command is represented by a letter. 
-TODO: 
-* Make adjustments to accommodate an arbitrary number of rules instead of just one or two.
-* Investigate whether computations can be made with bytes objects instead of unicode strings.
         """
         state=self.start
         rules = list(self.rule.keys())
@@ -59,15 +65,12 @@ TODO:
                 state=state.replace(rules[1],self.rule[rules[1]])
                 state=state.replace("temp",self.rule[rules[0]])
         self.unfolded=state
-        # Clean out 'commands' that are not executing a process.
-        # Convert command strings to python functions
-        # Convert arguments to floats
         for k in list(self.cmd.keys()):
-            if self.cmd[k]==['nop']:
+            if self.cmd[k]==['nop']: #Clean out 'commands' that are not executing a process.
                 self.unfolded=self.unfolded.replace(k,'')
-            else:
+            else: # Convert command strings to python functions
                 self.cmd[k][0]=eval('self.' + self.cmd[k][0])
-                if len(self.cmd[k])>1:
+                if len(self.cmd[k])>1: # Convert arguments to floats
                     self.cmd[k][1]=float(self.cmd[k][1])
 
     def draw(self):
