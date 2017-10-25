@@ -1,25 +1,6 @@
 \documentclass[titlepage]{article}
 \usepackage[utf8]{inputenc}
 \usepackage{hyperref}
-\usepackage{color}
-\definecolor{pink}{RGB}{255,102,204}
-\definecolor{red}{RGB}{ 255, 51, 0}
-\definecolor{orange}{RGB}{ 255, 192,0}
-\definecolor{yellow}{RGB}{ 255, 255, 0}
-\definecolor{green}{RGB}{ 0,176,80}
-\definecolor{lgreen}{RGB}{ 146,208,80}
-\definecolor{dblue}{RGB}{ 0,32,96}
-\definecolor{lblue}{RGB}{ 79,129,189}
-
-\newcommand{\pink}{\textcolor{pink}}
-\newcommand{\red}{\textcolor{red}}
-\newcommand{\orange}{\textcolor{orange}}
-\newcommand{\yellow}{\textcolor{yellow}}
-\newcommand{\green}{\textcolor{green}}
-\newcommand{\lgreen}{\textcolor{lgreen}}
-\newcommand{\dblue}{\textcolor{dblue}}
-\newcommand{\lblue}{\textcolor{lblue}}
-
 \usepackage{float}
 \restylefloat{figure}
 \usepackage{subcaption}
@@ -35,8 +16,47 @@
 \title{Fractals and the Beauty of Nature \\ DM550 - Fall Project 2017}
 \begin{document}
 \maketitle
+\section{Introduction}
+While the description of a tree, triangle or a leaf is easily communicated between two humans, as most humans share a common cultural understanding, a challenge arise when describing the same to a computer. The task assigned in DM500 requests that a script be written that can draw different figures based upon the Fractal Description Language (FDL) in the coding program Python by using the Turtle module. The assignment were separated into several obligatory tasks, divided into two sections; “Fractals and the Beauty of Nature” and “Fractal Description Language.”
+
+\section{Understanding recursion}
+As an illustrative explanation of recursions, a binary-tree of a depth of four, as seen in figure XX . The rule for the binary-tree is written as FLXRXLB, with F indicating a forward movement, B for a backward movement, and R and L as a right or left turn respectively. Each X indicates where each iteration (i.e. depth) would insert the rule. Table XX  shows the four iterations from depth one to Four. 
+\begin{table}[]
+\centering
+\caption{My caption}
+\label{my-label}
+\begin{tabular}{lllll}
+Depth & Rule                                                                                                                                                                                                   &  &  &  \\
+One   & F L R L B                                                                                                                                                                                              &  &  &  \\
+Two   & F L F L R L B R F L R L BL B                                                                                                                                                                           &  &  &  \\
+Three & \begin{tabular}[c]{@{}l@{}}F L F L F L R L B R F L R L B L R F\\ B L F L R L B R F L R L B L B L B\end{tabular}                                                                                        &  &  &  \\
+Four  & \begin{tabular}[c]{@{}l@{}}F L F L F L F L R L B R F L R\\ L B L B,R F L F L R L B R F L\\ R L B L B L B R F L F L F L R\\ L B R F L R L B L B R F L F L\\  R L B R F L R L B L B L B L B\end{tabular} &  &  & 
+\end{tabular}
+\end{table}
+It should be noted that in the assignment, specifications for scaling of the length are included, but they have been removed from this example for a simple and smooth explanation. The colours in figure XX indicate the succession of when a line is drawn. It must be stressed that the colours do not show iterations, but first pass line in the given direction, so if two or more iteration results in a line being drawn twice, only first pass line is drawn in the figure. 
+The colour coded FDL for a binary-thee of depth 4 is:
+
+\section{Utilization FDL in the assignment}
+The difference between one binary-tree of depth four and one binary-tree of depth 100 is only the length of the FDL and subsequent size of the tree, but the main mechanism remains unchanged.  The same mechanism would by modifying the rule, the amount of turns available, and the angle of the turns would be apple to draw any figure which is shown with the Sierpinski Triangle and fern.  In this assignment additional parts have been added to the FDL mechanism that are not related to drawing lines in the Python-Turtle program, but are designed to reduce the time drawing the figure. These extra lines would in the context of the binary-tree in figure XX  as an example enable the FDL reader to jump from the end of the redline directly to the start of the orange, the end of the yellow to jump to the green line and so forth. These jump would either be by moving the Turtle-drawer directly of by cloning a new Turtle-drawer to the needed point. 
+
+\section{Trial and error}
+While the final product show functional FDL readers with extra functions, minor errors in the FDL rule written would sometimes result in rather interesting figures. Figure XX  show a first attempt at a fern. While this is not a ideal fern, there are several signs that the underling FDL rule are on track since there are recursions in the structure and the bend is present. 
+
+The first attempt took depth as an value that was transmuted in to a length that the tree and branches should cover. (In context of figure XX  this would be the length of the pink line.) 
+While this in theory would work, the math needed to ensure that the scaling would result in a tree with the correct length (len) at any given depth (x) were not found. (See figure XX  for an impression of one of the failed implementations.) The main problem were a continues mismatch between requested depth and the printed depth of the binary-tree. 
+
+The problem were overcome by adding depth as the secondary imput factor in the definition of the object tree. (See figure XX)  Length were calculated based on the request in the assignment that a tree of the depth 10 should have the length 100. The depth value x now functioned as the iteration counter while length were scaled accordingly to the branch.  
+
+An initial ferne cloning-experiment, while yeilding a functional ferne FDL script, suffered from prolonged rendering time due to hardware limitations. The main problem arouse when due to ERIK SKRIV FORKLARING HER.
 \section{Sierpinski Triangle}
 Initially, implementation of the Sierpinski triangle was build upon the idea of placing inverted triangles inside other triangles. It turned out to be a tad complicated, but it yielded some rather interesting results, which can be seen here:
+\section{Binary-Tree}
+A simple binary-tree algorithm were written (INSERT NAME OF PY FILE ) which were developed to have an option to select depth. Each time a value was calculated print statements were added for that value to ensure that troubleshooting were more easily done.  A safeguard were added to the input value x to ensure that depth would be an integers, that would be passed down through the code. The safeguard checked for strings, and force exits if found. Subsequent it rounds floats and converts them to integers. (See figure XX )
+
+Following Turtle is imported and a few definitions of Turtle functions are written. 
+
+Minor print statements and some modifications form the Turtle package were added for aesthetics reasons and to ensure a proper user experience.  Finally the scaffolding was removed. 
+
 \begin{figure}[H]
   \centering
   \begin{subfigure}[b]{0.4\textwidth}
@@ -62,10 +82,11 @@ Revisiting the initial code, the faultiness of its algorithm became apparent and
 \section{Binary three}
 \subsection{Specification and design}
 We began by trying to define a function with two parameters (size, step)
-\section{Fern}
-First of all we define a function for the stem on the fern with several important parameters (length, width, segments curve, steps)
-The segments are the number of branches on the fern. To demonstrate segments the for loop is necessary tool. The pensize is thickness of the leaves and for each step the pensize degrees with 0,3. The curve is the angle of the leaves and for each turn the angle degrees with 0,3. 
-One of the interesting functions in python is the clone method. The idea with a clone method is too clone every time we turn left or right. The function calls itself with the parameters and the clone but this time the length and width degrees with 0,3 and the segments degrees with one step.
 \section{FDL-Parser}
+<<<<<<< HEAD
 Since the fdl-file is to be read by an instance of the turtle module's Turtle class, it was decided to make a subclass of it called SmartTurtle. This class should be able to read a fdl-file, and execute he commands, giving a reasonable result. Through analyzis of several fdl-files, a decision as to which attributes the SmartTurtle class should implement could be made. Thus, an instance of the SmartTurtle should have a start attribute containg a command, a length, a depth, a dictionary of rules, and one of commands which could be called with appropriate arguments. The rules should be unfolded according to the depth of the smartturtle, so a unfolded attribute would be convenient. This attribute would initially be an empty string, but when the user of the SmartTurtle class would want to execute the commands in the fdl-file loaded, a function to unfold the rules list and store them as a string in the unfolded attribute, will be required. This functionality is implemented in SmartTurtle's \dblue{step} function.
+=======
+Since the fdl-file is to be read by an instance of the turtle module's Turtle class, it was decided to make a subclass of it called SmartTurtle. This class should be able to read a fdl-file, and execute he commands, giving a reasonable result. 
+Since the instructions in the fdl file is supposed to be executed, Python's dictionary was deemed to be an appropriate data structure. The parser basically just reads through each line of the file, recognizing keywords, like \textit{start}, \textit{rule} and the like. The keywords are then used as lookups in the dictionary yielding a string containing arguments, list of rules, or a float or int, depending on the type of keyword.  \par
+>>>>>>> d61039422aa1892e6d1207a2286c510f62fde8cc
 \end{document}
