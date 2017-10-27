@@ -73,6 +73,7 @@ It should be noted that in the assignment, specifications for scaling of the len
     \caption{Color code applied to the binary tree}
   \end{subfigure}
   \label{fig:coltree}
+  \addtocounter{figure}{-1}
 \end{figure}
 
 \section{Utilizing FDL in the assignment}
@@ -121,7 +122,7 @@ Testing the binary tree was done to ensure a proper output. Different values for
 At the level of 12 the rendering time began to increase to a point where it became inconveniently to render. A second problem arose for depth of 20 plus since the crown of the tree would tend to leave the screen. A quick fix to this was implemented with some if-statements asking for a depth cap at 12. The cap is still at the user’s prerogative, so a tree with a large depth can still be generated if so required. An alternative fix would have been to change the length of the tree when the depth passed a certain value, but this will first be implemented in a later patch. "
 \begin{figure}[H]
   \centering
-  \includegraphics[width=\textwidth]{bitreeone}
+  \includegraphics[width=0.8\textwidth]{bitreeone}
   \caption{A beautiful binary tree}
   \label{fig:bitreeone}
 \end{figure}
@@ -130,6 +131,7 @@ At the level of 12 the rendering time began to increase to a point where it beca
 Initially, implementation of the Sierpinski triangle was build upon the idea of placing inverted triangles inside other triangles. It turned out to be a tad complicated, but it yielded some rather interesting results, which can be seen in \ref{fig:unsuccessful1} and \ref{fig:unsuccessful2}
 \begin{figure}[H]
   \centering
+  \caption{Not Sierpinski's triangles}
   \begin{subfigure}[b]{0.4\textwidth}
     \includegraphics[width=\textwidth]{wrongtriangle}
     \caption{An unsuccessful attempt}
@@ -140,13 +142,15 @@ Initially, implementation of the Sierpinski triangle was build upon the idea of 
     \caption{Another unsuccessful attempt}
     \label{fig:unsuccessful2}
   \end{subfigure}
+  \addtocounter{figure}{-1}
 \end{figure}
 After meddling around for some time, a decision was made to try the approach suggested in the project description. A successful algorithm that gave the expected result was then rapidly developed.
 \begin{figure}[H]
+  
   \includegraphics[width=0.6\textwidth]{triangle}
   \caption{Sierpinski triangle with 5 subdivisions.}
 \end{figure}
-Revisiting the initial code, the faultiness of its algorithm became apparent and hence could be corrected. The effectiveness of this new code compared to the approach recommended in the project description is due to the lack of redundant drawing. \par We used an iterative development process, meaning we started out by making a small piece of the code work in one iteration. Through testing, trial and error the goal of the iterative step was reached and we then carried on with the next step, where more code was implemented and tested. After several steps, we realized that our approach was overly complicated, so we started again from scratch. This time we did not care for optimization of the algorithm, and we solely focused on correctness.\footnote{The source code for this part of the project can be found in the file \href{https://github.com/ErikAndersen81/DM550-FractalProject/blob/master/sierpinsky-triangle.py}{sierpinsky-triangle.py}}
+Revisiting the initial code, the faultiness of its algorithm became apparent and hence could be corrected. The effectiveness of this new code compared to the approach recommended in the project description is due to the lack of redundant drawing. \par We used an iterative development process, meaning we started out by making a small piece of the code work in one iteration. Through testing, trial and error the goal of the iterative step was reached and we then carried on with the next step, where more code was implemented and tested. After several steps, we realized that our approach was overly complicated, so we started again from scratch. This time we did not care for optimization of the algorithm, and we solely focused on correctness.\footnote{The source code for this part of the project can be found in the file \href{https://github.com/ErikAndersen81/DM550-FractalProject/blob/master/sierpinsky-triangle.py}{sierpinsky-triangle.py} or appendix \ref{app:sierpinski}}
 \begin{figure}[H]
   \centering
   \includegraphics{bintree}
@@ -219,6 +223,10 @@ def screendump(t):
     img=t.getscreen()
     img.getcanvas().postscript(file="bintree.eps")
 \end{minted}
+
+\section{Sierpinski's Triangle}
+\label{app:sierpinski}
+\inputminted{python}{sierpinsky-triangle.py}
 \section{FDL-Parser}
 \begin{minted}{python}
   """ When this module is loaded as main, it will prompt the user for a fdl-file
