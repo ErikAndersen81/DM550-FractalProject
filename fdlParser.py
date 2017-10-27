@@ -1,15 +1,19 @@
-""" When this module is loaded as main, it will prompt the user for a fdl-file (Fractal Descriptive Language). The file must be present in the current working directory, and the full filename must be specified.
+""" When this module is loaded as main, it will prompt 
+the user for a fdl-file (Fractal Descriptive Language). 
+The file must be present in the current working directory, 
+and the full filename must be specified.
 """
 
 import turtle
 import sys
 
 class SmartTurtle(turtle.Turtle):
-    """ This smart turtle can be instantiated with a fdl file, which can be interpreted with SmartTurtle's draw method eg.:
+    """ This smart turtle can be instantiated 
+    with a fdl file, which can be interpreted o
+    using SmartTurtle's draw method eg.:
     
     t=SmartTurtle(fdl='my.fdl')
     t.draw()
-    
     
     """
     def __init__(self, **kwargs):
@@ -20,15 +24,18 @@ class SmartTurtle(turtle.Turtle):
             filename=kwargs.pop('fdl')
             self.load(filename)
         except FileNotFoundError:
-            raise FileNotFoundError("Please instantiate SmartTurtle with a valid filename.")
+            raise FileNotFoundError("Please instantiate \
+            SmartTurtle with a valid filename.")
         except KeyError:
-            print("Please load an fdl-file using load() method in order to use SmartTurlte's draw method")
+            print("Please load an fdl-file using load() \
+            method in order to use SmartTurlte's draw method")
         super().__init__(**kwargs)
         self.ht()
 
     def load(self, filename):
         """ ### TASK 12 ###
-        Loads fdl file and reads its elements into appropriate data structures.
+        Loads fdl file and reads its elements into 
+        appropriate data structures.
         """
         f=open(filename,'r')
         for i in f.readlines():
@@ -50,7 +57,10 @@ class SmartTurtle(turtle.Turtle):
             
     def step(self):
         """ ### TASK 8 ### 
-        Step computes the list of commands to be executed according to the depth given by the fdl. To save memory the list is saved as a string, where each command is represented by a letter. 
+        Step computes the list of commands to be executed 
+        according to the depth given by the fdl. To save 
+        memory the list is saved as a string, where each 
+        command is represented by a letter. 
         """
         state=self.start
         rules = list(self.rule.keys())
@@ -66,11 +76,14 @@ class SmartTurtle(turtle.Turtle):
                 state=state.replace("temp",self.rule[rules[0]])
         self.unfolded=state
         for k in list(self.cmd.keys()):
-            if self.cmd[k]==['nop']: #Clean out 'commands' that are not executing a process.
+            #Clean out 'commands' that are not executing a process.
+            if self.cmd[k]==['nop']: 
                 self.unfolded=self.unfolded.replace(k,'')
-            else: # Convert command strings to python functions
+            # Convert command strings to python functions
+            else: 
                 self.cmd[k][0]=eval('self.' + self.cmd[k][0])
-                if len(self.cmd[k])>1: # Convert arguments to floats
+                if len(self.cmd[k])>1:
+                    # Convert argument to float
                     self.cmd[k][1]=float(self.cmd[k][1])
 
     def draw(self):
